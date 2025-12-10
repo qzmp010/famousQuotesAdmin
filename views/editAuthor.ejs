@@ -1,70 +1,87 @@
 <%- include('partials/header.ejs') %>
 
-  <body>
-    <div class="d-flex">
-      <%- include('partials/nav.ejs') %>
+<body>
+  <div class="d-flex">
+    <%- include('partials/nav.ejs') %>
 
-        <div class="flex-grow-1 p-4">
+    <div class="flex-grow-1 p-4">
 
-          <h1>Updating Author Data</h1>
+      <h1 class="mb-4">Updating Author Data</h1>
 
-          <form method="POST" action="/author/edit">
+      <form method="POST" action="/author/edit" class="card p-4 shadow-sm" style="max-width: 600px;">
 
-            <input type="hidden" name="authorId" value="<%=authorInfo[0].authorId%>">
+        <input type="hidden" name="authorId" value="<%= authorInfo[0].authorId %>">
 
-            First Name:
-            <input type="text" name="fName" value="<%=authorInfo[0].firstName%>">
-            <br>
-
-            Last Name:
-            <input type="text" name="lName" value="<%=authorInfo[0].lastName%>">
-            <br>
-
-            Date of Birth:
-            <input type="date" name="dob" value="<%=authorInfo[0].dobISO%>">
-            <br>
-
-            Date of Death:
-            <input type="date" name="dod" value="<%=authorInfo[0].dodISO%>">
-            <br>
-
-            Sex:
-            <input type="radio" name="sex" value="M" <% if (authorInfo[0].sex=="M" ) { %>
-            checked
-            <% } %>
-
-              > Male
-
-              <input type="radio" name="sex" value="F" <% if (authorInfo[0].sex=="F" ) { %>
-              checked
-              <% } %>
-
-                > Female
-                <br>
-
-                Profession:
-                <input type="text" name="profession" value="<%=authorInfo[0].profession%>">
-                <br>
-
-                Country:
-                <input type="text" name="country" value="<%=authorInfo[0].country%>">
-                <br>
-
-                Portrait URL:
-                <input type="text" name="portrait" value="<%=authorInfo[0].portrait%>">
-                <br>
-
-                Biography:
-                <input type="text" name="biography" value="<%=authorInfo[0].biography%>">
-                <br>
-
-                <button>Update Author</button>
-
-
-          </form>
-          
+        <div class="mb-3">
+          <label class="form-label">First Name</label>
+          <input type="text" name="fName" class="form-control" 
+                 value="<%= authorInfo[0].firstName %>">
         </div>
 
-  </body>
+        <div class="mb-3">
+          <label class="form-label">Last Name</label>
+          <input type="text" name="lName" class="form-control" 
+                 value="<%= authorInfo[0].lastName %>">
+        </div>
 
-  </html>
+        <div class="mb-3">
+          <label class="form-label">Date of Birth</label>
+          <input type="date" name="dob" class="form-control" 
+                 value="<%= authorInfo[0].dobISO %>">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Date of Death</label>
+          <input type="date" name="dod" class="form-control" 
+                 value="<%= authorInfo[0].dodISO %>">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label d-block">Sex</label>
+
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="sex" id="sexMale" value="M"
+              <% if (authorInfo[0].sex === "M") { %> checked <% } %> >
+            <label class="form-check-label" for="sexMale">Male</label>
+          </div>
+
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="sex" id="sexFemale" value="F"
+              <% if (authorInfo[0].sex === "F") { %> checked <% } %> >
+            <label class="form-check-label" for="sexFemale">Female</label>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Profession</label>
+          <input type="text" name="profession" class="form-control" 
+                 value="<%= authorInfo[0].profession %>">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Country</label>
+          <input type="text" name="country" class="form-control" 
+                 value="<%= authorInfo[0].country %>">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Portrait URL</label>
+          <input type="text" name="portrait" class="form-control" 
+                 value="<%= authorInfo[0].portrait %>">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Biography</label>
+          <textarea name="biography" class="form-control" rows="4"><%= authorInfo[0].biography %></textarea>
+        </div>
+
+        <button class="btn btn-primary mt-2">Update Author</button>
+
+      </form>
+
+    </div>
+  </div>
+
+  <%- include('partials/footer.ejs') %>
+</body>
+</html>

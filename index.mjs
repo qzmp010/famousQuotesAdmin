@@ -84,12 +84,18 @@ app.post("/author/edit", async function (req, res) {
             SET firstName = ?,
                 lastName = ?,
                 dob = ?,
-                sex = ?
+                dod = ?,
+                sex = ?,
+                profession = ?,
+                country = ?,
+                portrait = ?,
+                biography = ?
             WHERE authorId =  ?`;
 
   let params = [req.body.fName,
-  req.body.lName, req.body.dob,
-  req.body.sex, req.body.authorId];
+  req.body.lName, req.body.dob, req.body.dod,
+  req.body.sex, req.body.profession, req.body.country,
+  req.body.portrait, req.body.biography, req.body.authorId];
   const [rows] = await conn.query(sql, params);
   res.redirect("/authors");
 });

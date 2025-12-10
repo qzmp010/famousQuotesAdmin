@@ -1,63 +1,75 @@
 <%- include('partials/header.ejs') %>
 
-        <body>
-        <div class="d-flex">
-            <%- include('partials/nav.ejs') %>
+<body>
+    <div class="d-flex">
+        <%- include('partials/nav.ejs') %>
 
-                <div class="flex-grow-1 p-4">
+        <div class="flex-grow-1 p-4">
 
-        <h1>Updating Quote Data</h1>
+            <h1 class="mb-4">Updating Quote Data</h1>
 
-        <form method="POST" action="/quote/edit">
-            <input type="hidden" name="quoteId" value="<%=quoteInfo[0].quoteId%>">
+            <form method="POST" action="/quote/edit" class="card p-4 shadow-sm" style="max-width: 600px;">
 
-            Quote:
-            <input type="text" name="quote" value="<%=quoteInfo[0].quote%>"><br>
-            Author:
-            <select id="authorSelect" name="authorId"></select>
-            <br>
-            Category:
-            <input type="text" name="category" value="<%=quoteInfo[0].category%>">
-            <br>
-            Likes:
-            <input type="number" name="likes" value="<%=quoteInfo[0].likes%>">
-            <br>
+                <input type="hidden" name="quoteId" value="<%= quoteInfo[0].quoteId %>">
 
-            <button>Edit Quote</button>
-        </form>
+                <div class="mb-3">
+                    <label class="form-label">Quote</label>
+                    <input type="text" name="quote" class="form-control" 
+                           value="<%= quoteInfo[0].quote %>">
+                </div>
 
-        <% if (typeof message !="undefined" ){ %>
-            <h3>
-                <%=message%>
-            </h3>
+                <div class="mb-3">
+                    <label class="form-label">Author</label>
+                    <select id="authorSelect" name="authorId" class="form-select"></select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Category</label>
+                    <input type="text" name="category" class="form-control" 
+                           value="<%= quoteInfo[0].category %>">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Likes</label>
+                    <input type="number" name="likes" class="form-control" 
+                           value="<%= quoteInfo[0].likes %>">
+                </div>
+
+                <button class="btn btn-primary mt-2">Edit Quote</button>
+
+            </form>
+
+            <% if (typeof message !== "undefined") { %>
+                <h3 class="mt-4"><%= message %></h3>
             <% } %>
 
-                <%- include('partials/footer.ejs') %>
-
         </div>
+    </div>
 
-        <script>
-            document.addEventListener("DOMContentLoaded", async () => {
-                const select = document.getElementById("authorSelect");
-                const authorId = "<%=quoteInfo[0].authorId%>";
+    <%- include('partials/footer.ejs') %>
 
-                try {
-                    const response = await fetch("/authors.json");
-                    const result = await response.json();
-                    
-                    result.authors.forEach(author => {
-                        const option = document.createElement("option");
-                        option.value = author.authorId;
-                        option.textContent = `${author.lastName}, ${author.firstName}`;
-                        select.appendChild(option);
-                    });
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            const select = document.getElementById("authorSelect");
+            const authorId = "<%= quoteInfo[0].authorId %>";
 
-                    select.value = authorId;
-                } catch (error) {
-                    console.error("Failed to load authors:", error);
-                }
-            });
-        </script>
-    </body>
+            try {
+                const response = await fetch("/authors.json");
+                const result = await response.json();
 
-    </html>
+                result.authors.forEach(author => {
+                    const option = document.createElement("option");
+                    option.value = author.authorId;
+                    option.textContent = `${author.lastName}, ${author.firstName}`;
+                    select.appendChild(option);
+                });
+
+                select.value = authorId;
+            } catch (error) {
+                console.error("Failed to load authors:", error);
+            }
+        });
+    </script>
+</body>
+
+</html>
