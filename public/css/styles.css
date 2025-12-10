@@ -1,0 +1,15 @@
+body {
+    background-color: #CBE2F6;
+}
+
+#quoteFinder {
+    max-width: 540px;
+}
+
+.cardImg {
+    width: 100%;
+}
+
+#footer-logo {
+    max-width: 300px;
+}

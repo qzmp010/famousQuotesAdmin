@@ -1,0 +1,49 @@
+<%- include('partials/header.ejs') %>
+
+    <body>
+        <div class="d-flex">
+            <%- include('partials/nav.ejs') %>
+
+                <div class="flex-grow-1 p-4">
+                    <h1> Famous Quotes - Admin Section </h1>
+
+
+                    <div class="container mt-4">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <h3 class="card-title">Admin Section</h3>
+                                <hr>
+
+                                <div class="d-flex gap-3 flex-wrap">
+
+                                    <a href="/authors" class="btn btn-warning text-center p-3" style="width:150px;">
+                                        <i class="bi bi-person-fill fs-3"></i><br>
+                                        Display Authors
+                                    </a>
+
+                                    <a href="/author/new" class="btn btn-success text-center p-3" style="width:150px;">
+                                        <i class="bi bi-person-plus-fill fs-3"></i><br>
+                                        Add Authors
+                                    </a>
+
+                                    <a href="/quotes" class="btn btn-warning text-center p-3" style="width:150px;">
+                                        <i class="bi bi-list-ul fs-3"></i><br>
+                                        Display Quotes
+                                    </a>
+
+                                    <a href="/quote/new" class="btn btn-success text-center p-3" style="width:150px;">
+                                        <i class="bi bi-chat-quote-fill fs-3"></i><br>
+                                        Add Quotes
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <%- include('partials/footer.ejs') %>
+    </body>
+
+    </html>

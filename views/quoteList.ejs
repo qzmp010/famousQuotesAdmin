@@ -1,0 +1,38 @@
+<%- include('partials/header.ejs') %>
+
+    <body>
+        <div class="d-flex">
+            <%- include('partials/nav.ejs') %>
+
+                <div class="flex-grow-1 p-4">
+
+                    <h1> Update/Delete Quotes </h1>
+
+
+                    <% for (i=0; i < quotes.length; i++) { %>
+
+
+                        <a href="/quote/edit?quoteId=<%=quotes[i].quoteId%>">UPDATE</a>
+
+
+                        <a href="/quote/delete?quoteId=<%=quotes[i].quoteId%>">DELETE</a>
+
+
+                        <%=quotes[i].quote%>
+                            <% if (quotes[i].lastName) { %>
+                                — <%=quotes[i].firstName%>
+                                    <%=quotes[i].lastName%>
+                            <% } %>
+
+                        <br>
+
+                    <% } %>
+
+                </div>
+
+        </div>
+
+        <%- include('partials/footer.ejs') %>
+    </body>
+
+    </html>

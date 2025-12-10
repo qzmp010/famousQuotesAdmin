@@ -1,0 +1,63 @@
+<%- include('partials/header.ejs') %>
+
+        <body>
+        <div class="d-flex">
+            <%- include('partials/nav.ejs') %>
+
+                <div class="flex-grow-1 p-4">
+
+        <h1>Updating Quote Data</h1>
+
+        <form method="POST" action="/quote/edit">
+            <input type="hidden" name="quoteId" value="<%=quoteInfo[0].quoteId%>">
+
+            Quote:
+            <input type="text" name="quote" value="<%=quoteInfo[0].quote%>"><br>
+            Author:
+            <select id="authorSelect" name="authorId"></select>
+            <br>
+            Category:
+            <input type="text" name="category" value="<%=quoteInfo[0].category%>">
+            <br>
+            Likes:
+            <input type="number" name="likes" value="<%=quoteInfo[0].likes%>">
+            <br>
+
+            <button>Edit Quote</button>
+        </form>
+
+        <% if (typeof message !="undefined" ){ %>
+            <h3>
+                <%=message%>
+            </h3>
+            <% } %>
+
+                <%- include('partials/footer.ejs') %>
+
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", async () => {
+                const select = document.getElementById("authorSelect");
+                const authorId = "<%=quoteInfo[0].authorId%>";
+
+                try {
+                    const response = await fetch("/authors.json");
+                    const result = await response.json();
+                    
+                    result.authors.forEach(author => {
+                        const option = document.createElement("option");
+                        option.value = author.authorId;
+                        option.textContent = `${author.lastName}, ${author.firstName}`;
+                        select.appendChild(option);
+                    });
+
+                    select.value = authorId;
+                } catch (error) {
+                    console.error("Failed to load authors:", error);
+                }
+            });
+        </script>
+    </body>
+
+    </html>
